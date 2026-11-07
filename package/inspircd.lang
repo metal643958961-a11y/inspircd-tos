@@ -1,0 +1,181 @@
+[zh-cn]
+name = "InspIRCd"
+auth = "316z666"
+descript = "为 NAS 本机 IRC 客户端提供频道聊天和私聊。"
+important = "首次启动前在项目 .env 设置 64 位随机小写十六进制 IRC_SECRET，仅监听本机 16667，不保存聊天记录。"
+release_note = "首个 TOS x86_64 Beta，基于 InspIRCd 4.12.1。"
+
+[zh-hk]
+name = "InspIRCd"
+auth = "316z666"
+descript = "為 NAS 本機 IRC 用戶端提供頻道聊天和私聊。"
+important = "請先在專案 .env 設定 64 位隨機小寫十六進位 IRC_SECRET，僅監聽本機 16667，不保存聊天記錄。"
+release_note = "首個 TOS x86_64 Beta，採用 InspIRCd 4.12.1。"
+
+[en-us]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[ko-kr]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[ja-jp]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[de-de]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[fr-fr]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[it-it]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[es-es]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[hu-hu]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[pl-pl]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[tr-tr]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[ru-ru]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[pt-pt]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[cs-cz]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[da-dk]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[nl-nl]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[nb-no]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[sv-se]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[el-gr]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[ro-ro]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[th-th]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[vi-vn]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[id-id]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[ar-sa]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."
+
+[he-il]
+name = "InspIRCd"
+auth = "316z666"
+descript = "Run a private local IRC service with channels and direct messages."
+important = "Set IRC_SECRET in the project .env to 64 random lowercase hex characters. Local port 16667; no chat history."
+release_note = "First TOS x86_64 Beta for InspIRCd 4.12.1."

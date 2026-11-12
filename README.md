@@ -1,14 +1,25 @@
-# InspIRCd for TerraMaster TOS 7 · 4.12.1.1 Beta
+# inspircd for TOS 7
 
-在 NAS 本机运行独立 IRC 服务，支持频道和一对一聊天。需要 x86_64、Docker Engine、Compose。一个容器，无数据库、无 Web 入口。仅在宿主回环 127.0.0.1:16667 发布明文 IRC；请勿将此端口转发到公网。共用服务器口令控制加入权限，昵称不是已验证身份。本包不保存历史记录、频道或昵称，也不提供文件传输或跨服互联。
+x86_64 Docker 整改版本 4.12.1.2。本地静态及容器回归通过，真实TOS应用中心安装仍待官方验收；Release发布不代表已通过审核。
 
-首次安装：在实际 Compose 项目目录创建 .env，已有文件请保留并手动追加变量。通过可信渠道分发口令，仅使用本机客户端。
-~~~sh
-(umask 077; set -C; printf 'IRC_SECRET=%s\n' "$(openssl rand -hex 32)" > .env)
-docker compose up -d
-~~~
-客户端连接 127.0.0.1:16667，填写服务器密码并选择昵称；两位客户端加入同一频道（例如 #lobby）后即可聊天。服务只接受 64 位小写十六进制配置口令。Docker 管理员可以查看容器环境；不要公开 .env、完整 inspect 或展开后的 Compose 配置。重建后复用 .env；若更换口令，更新 .env 并重新创建容器。停止与移除用 docker compose down，妥善处理保留的 .env。
+首次启动自动生成独立随机凭据，无需 .env 或预先 chown。初始化服务与主服务均使用 10000:10000，私有数据位于专用命名卷的 private 目录。管理员从 Container Manager 中查看该应用卷的 private/password，用户名为 任意 IRC 昵称。请勿将凭据放入日志或反馈。保留该卷重装可保留数据和密码；删除卷会永久清除数据。
 
-镜像约 25 MB（压缩），限制 128 MiB、64 个进程，UID 10000，只读根文件系统。安装包只含四个适配文件和自绘图标，不含镜像或上游二进制。[上游 4.12.1 源码](https://github.com/inspircd/inspircd/tree/v4.12.1)、[GPL v2 许可全文](licenses/InspIRCd.txt)、[镜像工程](https://github.com/inspircd/inspircd-docker)、[镜像工程 MIT 许可](licenses/Image-project.md)。Docker Hub 使用上游标签加 linux/amd64 manifest 摘要锁定。
+旧版绑定目录迁移必须停服、备份，将原 data 和凭据移入命名卷 private 下并保持 10000:10000 所有权，验证后再切换。本地回归验证将分别记录，不将重建等同于跨版本升级。
 
-在本目录执行 python3 build.py（需 Ruby/Psych），在 dist 内执行 shasum -a 256 -c SHA256SUMS。test.py 用于专用 Linux Docker 测试主机，要求已拉取固定摘要、容器名和端口空闲。TOS 实机验证为离线 Compose，应用中心安装、卸载及首次 .env 配置时机未验证。
+[隐私政策](PRIVACY.md) · [第三方许可](licenses/) · [反馈](https://github.com/metal643958961-a11y/inspircd-tos/issues)
+
+公开源码、隐私政策和许可随此固定版本提供。上游镜像全部来自 Docker Hub，以摘要固定。
+
+
+
+
+
+## 构建与本地回归
+
+`python3 build.py` 在本应用目录确定性重建四文件安装包及SHA256。依赖系统Python3、Ruby YAML，不安装额外包。
+隔离Linux回归命令与适用范围见[TESTING.md](TESTING.md)。
+
+## 卸载和迁移
+
+停止应用后，在Container Manager核对挂载的Docker卷：默认Compose项目为`inspircd`，通常卷名`inspircd_state`，平台可能因冲突改名，必须以实际挂载为准。默认卸载保留该卷；需要永久删除时先备份并确认没有其他容器引用，再删除该专用卷。不要使用全局volume prune。TOS的“删除数据”目前不自动删除命名卷。
+旧版数据迁移必须停服：把原data内容复制到新卷private/data，旧凭据复制到private/password，所有者保持配置user且目录700、凭据600。首次新启动会从原凭据生成NATS配置或Mailpit哈希。InspIRCd原聊天内存不可迁移。不要把正式凭据写到命令行日志或公开Issue。迁移在Linux合成数据上通过，不等同TOS自动升级。

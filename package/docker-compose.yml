@@ -1,32 +1,84 @@
-version: "3.8"
+---
+version: '3.8'
 services:
+  initialize:
+    image: library/busybox:1.37.0-musl@sha256:5624bb6777cf469b1fb50ae3f981b15d2715ee2fffaf20b9998cfb7843726835
+    platform: linux/amd64
+    user: 10000:10000
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    restart: 'no'
+    entrypoint:
+    - "/bin/sh"
+    - "-ec"
+    command:
+    - |
+      set -eu
+      umask 077
+      mkdir -p /tmp/private/data
+      if [ ! -s /tmp/private/password ]; then
+        temp=/tmp/private/password.$$$$
+        od -An -N32 -tx1 /dev/urandom | tr -d ' \n' > "$$temp"
+        ln "$$temp" /tmp/private/password || test -s /tmp/private/password
+        rm -f "$$temp"
+      fi
+      password=$$(cat /tmp/private/password)
+      [ "$${#password}" = 64 ]
+    volumes:
+    - state:/tmp
+    mem_limit: 32m
+    pids_limit: 32
   inspircd:
     image: inspircd/inspircd-docker:4.12.1@sha256:f508cded639265f134a032f8aa8ebeccdaf4e195ee689b04efc40c3134e37d2b
     container_name: inspircd
     platform: linux/amd64
-    user: "10000:10000"
+    user: 10000:10000
     restart: unless-stopped
     read_only: true
-    cap_drop: [ALL]
-    security_opt: ["no-new-privileges:true"]
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
     mem_limit: 128m
     pids_limit: 64
-    ports: ["127.0.0.1:16667:6667"]
-    environment:
-      IRC_SECRET: "${IRC_SECRET:?Set IRC_SECRET to 64 random hex characters in .env}"
-    tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=4m,mode=1777"]
-    working_dir: /inspircd
-    entrypoint: ["/bin/sh", "-ec"]
+    ports:
+    - 127.0.0.1:16667:6667
+    tmpfs:
+    - "/tmp:rw,noexec,nosuid,nodev,size=4m,mode=1777"
+    working_dir: "/inspircd"
+    entrypoint:
+    - "/bin/sh"
+    - "-ec"
     command:
-      - |
-        case "$$IRC_SECRET" in *[!a-f0-9]*) exit 64;; esac
-        [ "$${#IRC_SECRET}" = 64 ] || exit 64
-        umask 077
-        cat > /tmp/pilot.conf <<CFG
-        <server name="irc.nas.local" description="NAS IRC" network="NAS">
-        <bind address="0.0.0.0" port="6667" type="clients">
-        <connect name="local" allow="*" password="$$IRC_SECRET" resolvehostnames="no" limit="32">
-        <pid file="/tmp/inspircd.pid">
-        CFG
-        unset IRC_SECRET
-        exec /inspircd/bin/inspircd --nofork --config /tmp/pilot.conf
+    - |
+      IRC_SECRET=$(cat /state/private/password)
+      umask 077
+      cat > /tmp/pilot.conf <<CFG
+      <server name="irc.nas.local" description="NAS IRC" network="NAS">
+      <bind address="0.0.0.0" port="6667" type="clients">
+      <connect name="local" allow="*" password="$$IRC_SECRET" resolvehostnames="no" limit="32">
+      <pid file="/tmp/inspircd.pid">
+      CFG
+      unset IRC_SECRET
+      exec /inspircd/bin/inspircd --nofork --config /tmp/pilot.conf
+    healthcheck:
+      test:
+      - CMD
+      - "/bin/sh"
+      - "-ec"
+      - nc -z 127.0.0.1 6667
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    volumes:
+    - state:/state
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+volumes:
+  state:
+    driver: local
